@@ -135,8 +135,8 @@ type Token {
 }
 
 input UpdateUserInput {
-  firstName: String
-  lastName: String
+  firstname: String
+  lastname: String
 }
 
 type User {

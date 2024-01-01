@@ -8,9 +8,9 @@ import {
 import { IsEmail } from 'class-validator';
 import { Post } from '../../posts/models/post.model';
 import { BaseModel } from '../../common/models/base.model';
-import { Role } from '@prisma/client';
+import { EnumUserRole } from '@prisma/client';
 
-registerEnumType(Role, {
+registerEnumType(EnumUserRole, {
   name: 'Role',
   description: 'User role',
 });
@@ -22,13 +22,13 @@ export class User extends BaseModel {
   email: string;
 
   @Field(() => String, { nullable: true })
-  firstname?: string;
+  firstName?: string;
 
   @Field(() => String, { nullable: true })
-  lastname?: string;
+  lastName?: string;
 
-  @Field(() => Role)
-  role: Role;
+  @Field(() => EnumUserRole)
+  role: EnumUserRole;
 
   @Field(() => [Post], { nullable: true })
   posts?: [Post] | null;
