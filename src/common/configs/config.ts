@@ -9,9 +9,10 @@ const config: Config = {
   },
   swagger: {
     enabled: true,
-    title: 'Nestjs FTW',
-    description: 'The nestjs API description',
-    version: '1.5',
+    title: 'Headless Billing System',
+    description:
+      'The Headless Billing System REST API revolutionizes billing processes for businesses. This API operates independently of a user interface, enabling easy integration with diverse platforms. It offers customizable solutions for billing cycles, invoicing, and payment processing, streamlining operations for enhanced efficiency and customer satisfaction.',
+    version: '1.0',
     path: 'api',
   },
   graphql: {

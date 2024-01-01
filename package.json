@@ -1,23 +1,25 @@
 {
-  "name": "nestjs-prisma-client-starter",
+  "name": "headless-billing-system",
   "version": "0.0.1",
-  "description": "NestJS Prisma Client Starter Project",
-  "author": "Marc Stammerjohann",
+  "description": "The Headless Billing System REST API revolutionizes billing processes for businesses. This API operates independently of a user interface, enabling easy integration with diverse platforms. It offers customizable solutions for billing cycles, invoicing, and payment processing, streamlining operations for enhanced efficiency and customer satisfaction.",
+  "author": "Mohsin Shaikh",
   "license": "MIT",
   "keywords": [
-    "nestjs",
+    "nest js",
     "prisma",
     "prisma client",
     "typescript",
     "passport",
-    "graphql"
+    "graphql",
+    "rest",
+    "api"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example.git"
+    "url": "https://github.com/mohsin-shaikh/headless-billing-system.git"
   },
   "bugs": {
-    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example/issues"
+    "url": "https://github.com/mohsin-shaikh/headless-billing-system/issues"
   },
   "scripts": {
     "build": "nest build",
