@@ -8,6 +8,8 @@ import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
 import { JwtStrategy } from './jwt.strategy';
 import { SecurityConfig } from '../common/configs/config.interface';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
@@ -30,8 +32,10 @@ import { SecurityConfig } from '../common/configs/config.interface';
     AuthResolver,
     JwtStrategy,
     GqlAuthGuard,
+    JwtAuthGuard,
     PasswordService,
   ],
-  exports: [GqlAuthGuard],
+  exports: [GqlAuthGuard, JwtAuthGuard],
+  controllers: [AuthController],
 })
 export class AuthModule {}
