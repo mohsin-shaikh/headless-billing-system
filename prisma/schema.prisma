@@ -13,29 +13,95 @@ generator dbml {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
+  id        String       @id @default(cuid())
+  email     String       @unique
   password  String
-  firstname String?
-  lastname  String?
+  firstName String?      @map("first_name")
+  lastName  String?      @map("last_name")
+  role      EnumUserRole
   posts     Post[]
-  role      Role
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  @@map("user")
 }
 
 model Post {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   published Boolean
   title     String
   content   String?
   author    User?    @relation(fields: [authorId], references: [id])
-  authorId  String?
+  authorId  String?  @map("author_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("post")
 }
 
-enum Role {
+enum EnumUserRole {
   ADMIN
   USER
+}
+
+model Customer {
+  id        String    @id @default(cuid())
+  email     String?
+  firstName String?   @map("first_name")
+  lastName  String?   @map("last_name")
+  phone     String?
+  invoices  Invoice[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("customer")
+}
+
+model Product {
+  id           String        @id @default(cuid())
+  description  String?
+  name         String?
+  price        Float?
+  invoiceItems InvoiceItem[]
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime?     @updatedAt @map("updated_at")
+
+  @@map("product")
+}
+
+model Invoice {
+  id            String             @id @default(cuid())
+  invoiceNumber String?            @map("invoice_number")
+  dueDate       DateTime?          @map("due_date")
+  invoiceDate   DateTime?          @map("invoice_date")
+  status        EnumInvoiceStatus?
+  totalAmount   String?            @map("total_amount")
+  customerId    String?            @map("customer_id")
+  customer      Customer?          @relation(fields: [customerId], references: [id])
+  invoiceItems  InvoiceItem[]
+  createdAt     DateTime           @default(now()) @map("created_at")
+  updatedAt     DateTime?          @updatedAt @map("updated_at")
+
+  @@map("invoice")
+}
+
+model InvoiceItem {
+  id        String    @id @default(cuid())
+  lineTotal Float?    @map("line_total")
+  quantity  Int?
+  unitPrice Float?    @map("unit_price")
+  invoiceId String?   @map("invoice_id")
+  invoice   Invoice?  @relation(fields: [invoiceId], references: [id])
+  productId String?   @map("product_id")
+  product   Product?  @relation(fields: [productId], references: [id])
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("invoice_item")
+}
+
+enum EnumInvoiceStatus {
+  Paid
+  Unpaid
+  Pending
 }
