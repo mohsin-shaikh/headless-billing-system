@@ -11,7 +11,10 @@ import { PostsModule } from './posts/posts.module';
 import config from './common/configs/config';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GqlConfigService } from './gql-config.service';
-import { TemplatesModule } from './templates/templates.module';
+import { InvoicesModule } from './invoices/invoices.module';
+import { CustomersModule } from './customers/customers.module';
+import { ProductsModule } from './products/products.module';
+import { InvoiceItemsModule } from './invoice-items/invoice-items.module';
 
 @Module({
   imports: [
@@ -37,7 +40,10 @@ import { TemplatesModule } from './templates/templates.module';
     AuthModule,
     UsersModule,
     PostsModule,
-    TemplatesModule,
+    InvoicesModule,
+    CustomersModule,
+    ProductsModule,
+    InvoiceItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
